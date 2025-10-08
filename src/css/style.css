@@ -1,3 +1,16 @@
+:root{
+    --color-bg-dark: rgb(50, 50, 50);
+    --color-bg-light: rgb(255, 255, 255);
+    --color-bg-header: rgb(30, 30, 30);
+    --color-bg-footer: rgb(30, 30, 30);
+    --color-bg-facts-container: rgb(70,70,70);
+    --color-bg-card:rgb(45, 45, 45);
+
+    --color-text-dark: rgb(10, 10, 10);
+    --color-text-light: rgb(255, 255, 255);
+
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -7,21 +20,25 @@
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: rgb(255, 255, 255);
-    background-color: rgb(30, 30, 30)
+    color: var(--color-text-light);
+    background-color: var(--color-bg-dark);
 }
 
 header{
-    background-color: rgb(30, 30, 30);
-    color: rgb(255, 255, 255);
+    background-color: var(--color-bg-header);
+    color: var(--color-text-light);
     text-align: center;
     padding: 2rem 1rem;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 header h1{
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
+    color: var(--color-bg-light);
 }
 
 header p{
@@ -36,21 +53,86 @@ main{
 }
 
 .facts-container{
-    background-color: rgb(255, 255, 255);
+    background-color: var(--color-bg-facts-container);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
 .facts-container h2{
-    color: #667eea;
+    color: var( --color-text-light);
     margin-bottom: 1.5rem;
     font-size: 1.8rem;
     /* box-shadow: 0 2px 10px rgba(0,0,0,0.1); */
 }
 
+.fact-card{
+    background-color: var(--color-bg-card);
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.fact-card:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.fact-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.fact-category{
+    padding: 0.3rem, 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.fact-date{
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+}
+
+.fact-title{
+    color: var(--color-text-light);
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.fact-description{
+    color: var(--color-bg-light);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.fact-footer{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn-read-more{
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.btn-read-more:hover{
+    transform: scale(1.01);
+}
+
 footer{
-    background-color: rgb(30, 30, 30);
+    background-color: var(--color-bg-footer);
     text-align: center;
     padding: 1.5rem;
     color: rgb(255, 255, 255);

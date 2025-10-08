@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "category": "Sport",
+        "title": "Medale olimpijskie",
+        "description": "Złoty medal olimpijski, wbrew swojej nazwie, wcale nie jest wykonany z czystego złota. Skład poszczególnych krążków jest następujący: Złoty medal – składa się głównie ze srebra (ok. 93%) i miedzi (6%), a jego powierzchnię pokrywa jedynie cienka warstwa czystego złota o masie co najmniej 6 gramów. Srebrny medal – jest wykonany niemal z czystego srebra. Brązowy medal – to stop miedzi, cynku i cyny. Po raz ostatni medale wykonane w całości z litego złota sportowcy otrzymali na igrzyskach w Sztokholmie w 1912 roku.",
+        "date": "2025-10-07",
+        "source": "Olympic Committee"
+    },
+    {
+        "id": 2,
+        "category": "Geografia",
+        "title": "Australia się porusza",
+        "description": "Kontynent australijski przesuwa się na północ z prędkością około 7 cm rocznie - szybciej niż jakakolwiek inna płyta tektoniczna.",
+        "date": "2025-10-08",
+        "source": "National Geographic"
+    },
+    {
+        "id": 3,
+        "category": "Nauka",
+        "title": "Miód nigdy nie psuje się",
+        "description": "Archeolodzy znaleźli słoiki miodu w egipskich grobowcach, które mają ponad 3000 lat i nadal są jadalne. Niska zawartość wody i kwasowość sprawiają, że bakterie nie mogą się rozwijać.",
+        "date": "2025-10-06",
+        "source": "Science Daily"
+    },
+    {
+        "id": 4,
+        "category": "Technologia",
+        "title": "Pierwszy komputer ważył 27 ton",
+        "description": "ENIAC, pierwszy w pełni elektroniczny komputer ogólnego przeznaczenia, ważył około 27 ton i zajmował powierzchnię 167 m². Miał moc obliczeniową tysiące razy mniejszą niż współczesny smartfon.",
+        "date": "2025-10-05",
+        "source": "Computer History Museum"
+    }
+]

@@ -1,12 +1,10 @@
-const { act } = require("react");
-
-const facts_data_url = './data/facts.json';
+const FACTS_DATA_URL = './data/facts.json';
 
 const factsContainer = document.querySelector('.facts-container');
 
 async function fetchFacts() {
     try{
-        const response = await fetch(facts_data_url);
+        const response = await fetch(FACTS_DATA_URL);
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -39,20 +37,23 @@ function createFactCard(fact){
 
 function renderFacts(facts){
     const heading = factsContainer.querySelector('h2');
+    factsContainer.querySelectorAll('.fact-card').forEach(card => card.remove());
 
-    const existingCards = factsContainer.querySelectorAll('.fact-card');
-    existingCards.forEach(card => card.remove());
+   if (facts.length === 0) {
+        factsContainer.insertAdjacentHTML('beforeend', '<p style="color: #ccc;">Brak ciekawostek do wyświetlenia.</p>');
+        return;
+   }
 
-    facts.forEach(fact => {
+   facts.forEach(fact => {
         const cardHTML = createFactCard(fact);
         factsContainer.insertAdjacentHTML('beforeend', cardHTML);
-    });
+   });
 
-    console.log(`Rendered ${facts.length} facts.`);
+   console.log(`Rendered ${facts.length} facts.`);
 }
 
 let allFacts = [];
-let currentFacts = 'all';
+let currentFilter = 'all';
 
 function filterFacts(category){
     if(category === 'all'){
@@ -62,11 +63,11 @@ function filterFacts(category){
     return allFacts.filter(fact => fact.category.toLowerCase() === category.toLowerCase());
 }
 
-function updateActiveButton(selectedButton){
+function updateActiveButton(category){
     const allButtons = document.querySelectorAll('.filter-btn');
     allButtons.forEach(btn => btn.classList.remove('active'));
 
-    const activeButton = document.querySelector(`.filter-btn[data-category="${selectedButton}"]`);
+    const activeButton = document.querySelector(`.filter-btn[data-category="${category}"]`);
     if(activeButton){
         activeButton.classList.add('active');
     }
@@ -93,14 +94,14 @@ function handleFilterClick(event){
 }
 
 async function init(){
-    const facts = await fetchFacts();
+    // const facts = await fetchFacts();
     
-    if (facts.length > 0) {
-        renderFacts(facts);
-    } 
-    else{
-        factsContainer.innerHTML += '<p style="color: red;">Nie udało się załadować ciekawostek.</p>';
-    }
+    // if (facts.length > 0) {
+    //     renderFacts(facts);
+    // } 
+    // else{
+    //     factsContainer.innerHTML += '<p style="color: red;">Nie udało się załadować ciekawostek.</p>';
+    // }
 
     console.log('Initializing facts...');
 
@@ -110,7 +111,7 @@ async function init(){
         renderFacts(allFacts);
 
         const filterButtons = document.querySelector('.filter-buttons');
-        if(fikterButtons){
+        if(filterButtons){
             filterButtons.addEventListener('click', handleFilterClick);
             console.log('Filter buttons initialized.');
         }

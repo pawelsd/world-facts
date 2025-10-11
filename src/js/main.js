@@ -1,3 +1,5 @@
+const { act } = require("react");
+
 const facts_data_url = './data/facts.json';
 
 const factsContainer = document.querySelector('.facts-container');
@@ -49,6 +51,47 @@ function renderFacts(facts){
     console.log(`Rendered ${facts.length} facts.`);
 }
 
+let allFacts = [];
+let currentFacts = 'all';
+
+function filterFacts(category){
+    if(category === 'all'){
+        return allFacts;
+    }
+
+    return allFacts.filter(fact => fact.category.toLowerCase() === category.toLowerCase());
+}
+
+function updateActiveButton(selectedButton){
+    const allButtons = document.querySelectorAll('.filter-btn');
+    allButtons.forEach(btn => btn.classList.remove('active'));
+
+    const activeButton = document.querySelector(`.filter-btn[data-category="${selectedButton}"]`);
+    if(activeButton){
+        activeButton.classList.add('active');
+    }
+}
+
+function handleFilterClick(event){
+    const button = event.target;
+
+    if(!button.classList.contains('filter-btn')){
+        return;
+    }
+
+    const category = button.dataset.category;
+    currentFilter = category;
+
+    console.log(`Filtering facts by category: ${category}`);
+
+    updateActiveButton(category);
+
+    const filteredFacts = filterFacts(category);
+    renderFacts(filteredFacts);
+
+    console.log(`Showing ${filteredFacts.length} facts for category: ${category}`);
+}
+
 async function init(){
     const facts = await fetchFacts();
     
@@ -57,6 +100,23 @@ async function init(){
     } 
     else{
         factsContainer.innerHTML += '<p style="color: red;">Nie udało się załadować ciekawostek.</p>';
+    }
+
+    console.log('Initializing facts...');
+
+    allFacts = await fetchFacts();
+
+    if(allFacts.length > 0){
+        renderFacts(allFacts);
+
+        const filterButtons = document.querySelector('.filter-buttons');
+        if(fikterButtons){
+            filterButtons.addEventListener('click', handleFilterClick);
+            console.log('Filter buttons initialized.');
+        }
+        else{
+            factsContainer.innerHTML += '<p style="color: red;">Nie udało się załadować ciekawostek.</p>';
+        }
     }
 }
 

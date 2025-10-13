@@ -37,23 +37,35 @@ function createFactCard(fact){
 
 function renderFacts(facts){
     const heading = factsContainer.querySelector('h2');
-    factsContainer.querySelectorAll('.fact-card').forEach(card => card.remove());
+    
+    factsContainer.innerHTML = '';
+    if(heading){
+        factsContainer.appendChild(heading);
+    }
 
-   if (facts.length === 0) {
-        factsContainer.insertAdjacentHTML('beforeend', '<p style="color: #ccc;">Brak ciekawostek do wyświetlenia.</p>');
+    if(facts.length === 0){
+        const emptyMessage = document.createElement('p');
+        emptyMessage.style.color = '#ccc';
+        emptyMessage.textContent = 'Brak ciekawostek do wyświetlenia.';
+        factsContainer.appendChild(emptyMessage);
         return;
-   }
+    }
 
-   facts.forEach(fact => {
+    facts.forEach(fact => {
         const cardHTML = createFactCard(fact);
         factsContainer.insertAdjacentHTML('beforeend', cardHTML);
-   });
+    });
 
    console.log(`Rendered ${facts.length} facts.`);
 }
 
 let allFacts = [];
 let currentFilter = 'all';
+let searchQuery = '';
+
+const searchInput = document.getElementById('search-input');
+const clearSearchBtn = document.getElementById('clear-search');
+const searchResultsInfo = document.querySelector('.search-results-info');
 
 function filterFacts(category){
     if(category === 'all'){
@@ -87,22 +99,78 @@ function handleFilterClick(event){
 
     updateActiveButton(category);
 
-    const filteredFacts = filterFacts(category);
+    const filteredFacts = getFilteredFacts();
     renderFacts(filteredFacts);
+    updateSearchInfo(filteredFacts.length);
 
     console.log(`Showing ${filteredFacts.length} facts for category: ${category}`);
 }
 
-async function init(){
-    // const facts = await fetchFacts();
-    
-    // if (facts.length > 0) {
-    //     renderFacts(facts);
-    // } 
-    // else{
-    //     factsContainer.innerHTML += '<p style="color: red;">Nie udało się załadować ciekawostek.</p>';
-    // }
+function searchFacts(facts, query){
+    if(!query || query.trim() === ''){
+        return facts;
+    }
 
+    const lowerQuery = query.toLowerCase().trim();
+
+    return facts.filter(fact => {
+        const titleMatch = fact.title.toLowerCase().includes(lowerQuery);
+        const descriptionMatch = fact.description.toLowerCase().includes(lowerQuery);
+        const categoryMatch = fact.category.toLowerCase().includes(lowerQuery);
+
+        return titleMatch || descriptionMatch || categoryMatch;
+    });
+}
+
+function getFilteredFacts(){
+    let facts = filterFacts(currentFilter);
+
+    facts = searchFacts(facts, searchQuery);
+
+    return facts;
+}
+
+function updateSearchInfo(count){
+    if(searchQuery.trim() !== '' || currentFilter !== 'all'){
+        searchResultsInfo.textContent = `Znaleziono ${count} ciekawostek.`;
+    }
+    else{
+        searchResultsInfo.textContent = '';
+    }
+}
+
+function handleSearchInput(event){
+    searchQuery = event.target.value;
+
+    if(searchQuery.trim() !== ''){
+        clearSearchBtn.style.display = 'flex';
+    }
+    else{
+        clearSearchBtn.style.display = 'none';
+    }
+
+    const fileteredFacts = getFilteredFacts();
+    renderFacts(fileteredFacts);
+    updateSearchInfo(fileteredFacts.length);
+
+    console.log(`Search query: "${searchQuery}", found ${fileteredFacts.length} facts.`);
+}
+
+function clearSearch(){
+    searchInput.value = '';
+    searchQuery = '';
+    clearSearchBtn.style.display = 'none';
+
+    const filteredFacts = getFilteredFacts();
+    renderFacts(filteredFacts);
+    updateSearchInfo(filteredFacts.length);
+
+    searchInput.focus();
+
+    console.log('Search cleared.');
+}
+
+async function init(){
     console.log('Initializing facts...');
 
     allFacts = await fetchFacts();
@@ -115,9 +183,19 @@ async function init(){
             filterButtons.addEventListener('click', handleFilterClick);
             console.log('Filter buttons initialized.');
         }
-        else{
-            factsContainer.innerHTML += '<p style="color: red;">Nie udało się załadować ciekawostek.</p>';
+
+        if(searchInput){
+            searchInput.addEventListener('input', handleSearchInput);
+            console.log('Search input initialized.');
         }
+
+        if(clearSearchBtn){
+            clearSearchBtn.addEventListener('click', clearSearch);
+            console.log('Clear search button initialized.');
+        }
+    }
+    else{
+        factsContainer.innerHTML += '<p style="color: red;">Nie udało się załadować ciekawostek.</p>';
     }
 }
 

@@ -30,5 +30,205 @@
         "description": "ENIAC, pierwszy w pełni elektroniczny komputer ogólnego przeznaczenia, ważył około 27 ton i zajmował powierzchnię 167 m². Miał moc obliczeniową tysiące razy mniejszą niż współczesny smartfon.",
         "date": "2025-10-05",
         "source": "Computer History Museum"
+    },
+    {
+        "id": 5,
+        "category": "Kosmos",
+        "title": "Na Wenus dzień trwa dłużej niż rok",
+        "description": "Wenus obraca się wokół własnej osi tak wolno, że jeden jej dzień trwa 243 ziemskie dni — dłużej niż jej rok, który trwa 225 dni. Co ciekawe, obraca się też w przeciwnym kierunku niż większość planet Układu Słonecznego.",
+        "date": "2025-10-09",
+        "source": "NASA"
+    },
+    {
+        "id": 6,
+        "category": "Historia",
+        "title": "Kleopatra żyła bliżej czasów lądowania na Księżycu niż budowy piramid",
+        "description": "Kleopatra VII panowała w Egipcie około 2000 lat po ukończeniu Wielkiej Piramidy w Gizie i około 2000 lat przed lądowaniem człowieka na Księżycu w 1969 roku.",
+        "date": "2025-10-10",
+        "source": "History Channel"
+    },
+    {
+        "id": 7,
+        "category": "Biologia",
+        "title": "Ośmiornice mają trzy serca",
+        "description": "Dwa z serc ośmiornicy pompują krew do skrzeli, a trzecie – do reszty ciała. Co ciekawe, gdy ośmiornica pływa, serce główne przestaje bić, dlatego zwierzęta te wolą się czołgać niż pływać.",
+        "date": "2025-10-11",
+        "source": "Marine Biology Institute"
+    },
+    {
+        "id": 8,
+        "category": "Technologia",
+        "title": "Pierwszy e-mail wysłano w 1971 roku",
+        "description": "Inżynier Ray Tomlinson wysłał pierwszy e-mail w 1971 roku. Wiadomość była testowa i brzmiała prawdopodobnie coś w rodzaju 'QWERTYUIOP'. To on zaproponował użycie znaku '@' w adresach e-mail.",
+        "date": "2025-10-12",
+        "source": "Internet Hall of Fame"
+    },
+    {
+        "id": 9,
+        "category": "Przyroda",
+        "title": "Drzewa komunikują się przez podziemną sieć grzybów",
+        "description": "W lasach korzenie drzew połączone są z grzybnią, tworząc tzw. 'Wood Wide Web'. Dzięki niej drzewa wymieniają między sobą składniki odżywcze i ostrzegają się przed zagrożeniami.",
+        "date": "2025-10-13",
+        "source": "BBC Earth"
+    },
+    {
+        "id": 10,
+        "category": "Język",
+        "title": "Najdłuższe słowo w języku polskim",
+        "description": "Za jedno z najdłuższych słów w języku polskim uważa się 'konstantynopolitańczykowianeczka' – oznaczające mieszkankę Konstantynopola. Ma 32 litery.",
+        "date": "2025-10-14",
+        "source": "PWN"
+    },
+    {
+        "id": 11,
+        "category": "Technologia",
+        "title": "Pierwsza strona internetowa wciąż działa",
+        "description": "Pierwsza strona WWW, stworzona przez Tima Bernersa-Lee w 1991 roku w CERN, nadal istnieje i jest dostępna pod oryginalnym adresem info.cern.ch.",
+        "date": "2025-10-15",
+        "source": "CERN"
+    },
+    {
+        "id": 12,
+        "category": "Kosmos",
+        "title": "Neutronowa łyżeczka waży miliard ton",
+        "description": "Materiał z gwiazdy neutronowej jest tak gęsty, że łyżeczka tej substancji ważyłaby około miliarda ton — tyle co cała góra Everest.",
+        "date": "2025-10-16",
+        "source": "NASA"
+    },
+    {
+        "id": 13,
+        "category": "Biologia",
+        "title": "Rekiny są starsze niż drzewa",
+        "description": "Rekiny pojawiły się około 400 milionów lat temu, podczas gdy pierwsze drzewa pojawiły się dopiero 50 milionów lat później.",
+        "date": "2025-10-17",
+        "source": "National Geographic"
+    },
+    {
+        "id": 14,
+        "category": "Kultura",
+        "title": "Szekspir wymyślił ponad 1700 słów",
+        "description": "William Szekspir jest autorem setek angielskich słów i zwrotów, takich jak 'lonely', 'eyeball' czy 'fashionable'. Wiele z nich używamy do dziś.",
+        "date": "2025-10-18",
+        "source": "British Library"
+    },
+    {
+        "id": 15,
+        "category": "Geografia",
+        "title": "Kanada ma najdłuższą linię brzegową na świecie",
+        "description": "Linia brzegowa Kanady liczy ponad 202 tysiące kilometrów – to więcej niż długość wszystkich innych linii brzegowych razem wziętych.",
+        "date": "2025-10-19",
+        "source": "World Atlas"
+    },
+    {
+        "id": 16,
+        "category": "Chemia",
+        "title": "Woda może istnieć jednocześnie w trzech stanach skupienia",
+        "description": "W tzw. punkcie potrójnym woda może być jednocześnie w stanie stałym, ciekłym i gazowym – to unikalne zjawisko fizyczne zachodzące w określonych warunkach ciśnienia i temperatury.",
+        "date": "2025-10-20",
+        "source": "Science Daily"
+    },
+    {
+        "id": 17,
+        "category": "Przyroda",
+        "title": "Żółwie morskie potrafią wrócić na plażę swojego urodzenia",
+        "description": "Samice żółwi morskich, po wielu latach życia w oceanie, potrafią wrócić na tę samą plażę, na której się wykluły, aby złożyć jaja.",
+        "date": "2025-10-21",
+        "source": "WWF"
+    },
+    {
+        "id": 18,
+        "category": "Historia",
+        "title": "Najkrótsza wojna w historii trwała 38 minut",
+        "description": "Wojna między Wielką Brytanią a Zanzibarem w 1896 roku zakończyła się po zaledwie 38 minutach, gdy pałac sułtana został zbombardowany.",
+        "date": "2025-10-22",
+        "source": "BBC History"
+    },
+    {
+        "id": 19,
+        "category": "Technologia",
+        "title": "Pierwszy dysk twardy miał pojemność 5 MB",
+        "description": "W 1956 roku firma IBM stworzyła dysk twardy o pojemności 5 megabajtów, który ważył ponad tonę. Dziś tyle mieści pojedyncze zdjęcie w wysokiej rozdzielczości.",
+        "date": "2025-10-23",
+        "source": "Computer History Museum"
+    },
+    {
+        "id": 20,
+        "category": "Kosmos",
+        "title": "Na Saturnie i Jowiszu może padać diamentowy deszcz",
+        "description": "W atmosferach Jowisza i Saturna panują takie ciśnienia i temperatury, że węgiel może przekształcać się w diamenty. Naukowcy przypuszczają, że dosłownie 'pada tam diamentowy deszcz'.",
+        "date": "2025-10-24",
+        "source": "NASA Jet Propulsion Laboratory"
+    },
+    {
+        "id": 21,
+        "category": "Historia",
+        "title": "Najstarsze znane buty mają ponad 5500 lat",
+        "description": "Skórzany but znaleziony w Armenii datowany jest na około 3500 rok p.n.e. Został wykonany z jednego kawałka skóry i wypchany trawą dla zachowania kształtu.",
+        "date": "2025-10-25",
+        "source": "Armenian Institute of Archaeology"
+    },
+    {
+        "id": 22,
+        "category": "Technologia",
+        "title": "Pierwszy SMS został wysłany w 1992 roku",
+        "description": "Wiadomość brzmiała 'Merry Christmas' i została wysłana z komputera na telefon pracownika firmy Vodafone. To wydarzenie zapoczątkowało erę wiadomości tekstowych.",
+        "date": "2025-10-26",
+        "source": "BBC Technology"
+    },
+    {
+        "id": 23,
+        "category": "Biologia",
+        "title": "Niektóre gatunki meduz są biologicznie nieśmiertelne",
+        "description": "Meduza Turritopsis dohrnii potrafi cofnąć swój cykl życia do stadium polipa, co w teorii pozwala jej żyć w nieskończoność — o ile nie zostanie zjedzona lub zniszczona przez chorobę.",
+        "date": "2025-10-27",
+        "source": "Marine Biology Today"
+    },
+    {
+        "id": 24,
+        "category": "Geografia",
+        "title": "Mount Everest rośnie co roku o kilka milimetrów",
+        "description": "Z powodu ruchów płyt tektonicznych góra Everest rośnie o około 4 milimetry rocznie. Równocześnie erozja i wiatr stopniowo ją ścierają.",
+        "date": "2025-10-28",
+        "source": "National Geographic"
+    },
+    {
+        "id": 25,
+        "category": "Kultura",
+        "title": "Najczęściej tłumaczona książka świata to Biblia",
+        "description": "Biblia została przetłumaczona w całości lub częściowo na ponad 3400 języków, co czyni ją najbardziej rozpowszechnioną książką w historii ludzkości.",
+        "date": "2025-10-29",
+        "source": "United Bible Societies"
+    },
+    {
+        "id": 26,
+        "category": "Technologia",
+        "title": "Pierwszy aparat fotograficzny potrzebował 8 godzin na zrobienie zdjęcia",
+        "description": "W 1826 roku Joseph Nicéphore Niépce wykonał pierwsze trwałe zdjęcie. Ekspozycja trwała około 8 godzin, a obraz przedstawiał widok z jego okna.",
+        "date": "2025-10-30",
+        "source": "Photography History Museum"
+    },
+    {
+        "id": 27,
+        "category": "Przyroda",
+        "title": "Bambus potrafi rosnąć nawet metr dziennie",
+        "description": "Niektóre gatunki bambusa, zwłaszcza w tropikach, rosną niezwykle szybko – nawet 90–100 cm w ciągu 24 godzin, co czyni je jednymi z najszybciej rosnących roślin na świecie.",
+        "date": "2025-10-31",
+        "source": "Botanical Research Journal"
+    },
+    {
+        "id": 28,
+        "category": "Fizyka",
+        "title": "Cząstki w twoim ciele mogą mieć miliardy lat",
+        "description": "Atom węgla w twoim organizmie mógł powstać we wnętrzu gwiazdy, która eksplodowała miliardy lat temu – jesteśmy więc dosłownie zbudowani z 'gwiezdnego pyłu'.",
+        "date": "2025-11-01",
+        "source": "Scientific American"
+    },
+    {
+        "id": 29,
+        "category": "Sport",
+        "title": "Maraton ma nietypową długość z powodu rodziny królewskiej",
+        "description": "Standardowa długość maratonu – 42,195 km – została ustalona podczas igrzysk w Londynie w 1908 roku, by bieg kończył się przed lożą królewską, gdzie siedziała rodzina królewska.",
+        "date": "2025-11-02",
+        "source": "Olympic Museum"
     }
 ]

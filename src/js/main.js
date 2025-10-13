@@ -31,6 +31,7 @@ function createFactCard(fact){
             <div class="fact-footer">
                 <button class="btn-read-more" data-id="${fact.id}">Czytaj więcej</button>
             </div>
+            <p class="fact-source">${fact.source}</p>
         </article>
     `;
 }

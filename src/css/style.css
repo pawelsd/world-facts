@@ -24,6 +24,48 @@
     --color-text-light: rgb(30, 30, 30);
 }
 
+[data-theme="light"] header {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+[data-theme="light"] .fact-card{
+    border: 1px solid var(--color-text-dark);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+[data-theme="light"] .fact-card:hover{
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+[data-theme="light"] .search-input{
+    border-color: #ddd;
+}
+
+[data-theme="light"] .filter-btn{
+    border-color: #ddd;
+}
+
+[data-theme="light"] .filter-btn.active{
+    border-color: var(--color-text-dark);
+    color: var(--color-text-light);
+}
+
+[data-theme="light"] .header-text h1{
+    color: var(--color-text-dark);
+}
+
+[data-theme="light"] .fact-description{
+    color: var(--color-text-dark);
+}
+
+[data-theme="light"] .btn-read-more{
+    border: 1px solid var(--color-text-dark);
+}
+
+[data-theme="light"] footer p{
+    color: var(--color-text-dark);
+}
+
 body,
 header,
 .search-container,

@@ -1,6 +1,55 @@
 const FACTS_DATA_URL = './data/facts.json';
 
 const factsContainer = document.querySelector('.facts-container');
+const searchInput = document.getElementById('search-input');
+const clearSearchBtn = document.getElementById('clear-search');
+const searchResultsInfo = document.querySelector('.search-results-info');
+const themeToggle = document.getElementById('theme-toggle');
+
+function getSavedTheme(){
+    const savedThheme = localStorage.getItem('theme');
+    if(savedThheme){
+        return savedThheme;
+    }
+
+    if(window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches){
+        return 'light';
+    }
+
+    return 'dark';
+}
+
+function applyTheme(theme){
+    if(theme === 'light'){
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeToggle.querySelector('.theme-icon').textContent = '☀️';
+        themeToggle.setAttribute('aria-label', 'Przełącz na motyw ciemny');
+    }
+    else{
+        document.documentElement.removeAttribute('data-theme');
+        themeToggle.querySelector('.theme-icon').textContent = '🌙';
+        themeToggle.setAttribute('aria-label', 'Przełącz na motyw jasny');
+    }
+
+    localStorage.setItem('theme', theme);
+
+    console.log(`Theme changec to: ${theme}`);
+}
+
+function toggleTheme(){
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+    applyTheme(newTheme);
+}
+
+function initTheme(){
+    const savedTheme = getSavedTheme();
+
+    applyTheme(savedTheme);
+
+    console.log(`Theme initialized to: ${savedTheme}`);
+}
 
 async function fetchFacts() {
     try{
@@ -63,10 +112,6 @@ function renderFacts(facts){
 let allFacts = [];
 let currentFilter = 'all';
 let searchQuery = '';
-
-const searchInput = document.getElementById('search-input');
-const clearSearchBtn = document.getElementById('clear-search');
-const searchResultsInfo = document.querySelector('.search-results-info');
 
 function filterFacts(category){
     if(category === 'all'){
@@ -174,6 +219,8 @@ function clearSearch(){
 async function init(){
     console.log('Initializing facts...');
 
+    initTheme();
+
     allFacts = await fetchFacts();
 
     if(allFacts.length > 0){
@@ -193,6 +240,11 @@ async function init(){
         if(clearSearchBtn){
             clearSearchBtn.addEventListener('click', clearSearch);
             console.log('Clear search button initialized.');
+        }
+
+        if(themeToggle){
+            themeToggle.addEventListener('click', toggleTheme);
+            console.log('Theme toggle button initialized.');
         }
     }
     else{

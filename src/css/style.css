@@ -9,6 +9,33 @@
     --color-text-dark: rgb(10, 10, 10);
     --color-text-light: rgb(255, 255, 255);
 
+    --transition-speed: 0.3s;
+}
+
+[data-theme="light"]{
+    --color-bg-dark: rgb(240, 240, 240);
+    --color-bg-light: rgb(255, 255, 255);
+    --color-bg-header: rgb(255, 255, 255);
+    --color-bg-footer: rgb(245, 245, 245);
+    --color-bg-facts-container: rgb(255, 255, 255);
+    --color-bg-card: rgb(250, 250, 250);
+
+    --color-text-dark: rgb(10, 10, 10);
+    --color-text-light: rgb(30, 30, 30);
+}
+
+body,
+header,
+.search-container,
+.filters,
+.facts-container,
+.fact-card,
+.filter-btn,
+.search-input,
+.btn-read-more{
+    transition: background-color var(--transition-speed) ease, 
+    color var(--transition-speed) ease, 
+    border-color var(--transition-speed) ease, 
 }
 
 *{
@@ -47,6 +74,19 @@ header{
     z-index: 1000;
 }
 
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-text {
+    flex: 1;
+}
+
 header h1{
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
@@ -58,18 +98,33 @@ header p{
     opacity: 0.6;
 }
 
-header .btn-toggle-theme{
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 40px;
-    height: 40px;
-    background-image: url('../assets/images/light.png');
-    background-size: cover;
-    border: none;
-    border-radius: 15px;
+.theme-toggle{
+    background-color: var(--color-bg-card);
+    border: 2px solid transparent;
+    color: var(--color-text-light);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    flex-shrink: 0;
+}
+
+.theme-toggle:hover{
+    transform: rotate(20deg) scale(1.1);
+}
+
+.theme-toggle:active{
+    transform: rotate(20deg) scale(0.95);
+}
+
+.theme-icon{
+    display: block;
+    transition: transform 0.3s ease;
 }
 
 main{
@@ -327,13 +382,6 @@ footer{
 }
 
 @media screen and (max-width: 480px){ /* Mobile */
-    header .btn-toggle-theme{
-        width: 25px;
-        height: 25px;
-        top: 0.5rem;
-        right: 0.5rem;
-    }
-
     header{
         padding: 1.5rem 0.8rem;
     }

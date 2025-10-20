@@ -6,6 +6,13 @@
     --color-bg-facts-container: rgb(70,70,70);
     --color-bg-card:rgb(45, 45, 45);
 
+    --category-science: #3b82f6;
+    --category-geography: #10b981;
+    --category-sport: #f59e0b;
+    --category-technology: #8b5cf6;
+    --category-history: #ef4444;
+    --category-default: #6b7280;
+
     --color-text-dark: rgb(10, 10, 10);
     --color-text-light: rgb(255, 255, 255);
 
@@ -219,6 +226,41 @@ main{
     border-color: var(--color-text-light);
 }
 
+.filter-btn[data-category="Nauka"]:hover,
+.filter-btn[data-category="Nauka"].active {
+    background-color: var(--category-science);
+    color: white;
+    border-color: var(--category-science);
+}
+
+.filter-btn[data-category="Geografia"]:hover,
+.filter-btn[data-category="Geografia"].active {
+    background-color: var(--category-geography);
+    color: white;
+    border-color: var(--category-geography);
+}
+
+.filter-btn[data-category="Sport"]:hover,
+.filter-btn[data-category="Sport"].active {
+    background-color: var(--category-sport);
+    color: white;
+    border-color: var(--category-sport);
+}
+
+.filter-btn[data-category="Technologia"]:hover,
+.filter-btn[data-category="Technologia"].active {
+    background-color: var(--category-technology);
+    color: white;
+    border-color: var(--category-technology);
+}
+
+.filter-btn[data-category="all"]:hover,
+.filter-btn[data-category="all"].active {
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+    border-color: var(--color-bg-light);
+}
+
 .facts-container{
     background-color: var(--color-bg-facts-container);
     padding: 3rem;
@@ -259,6 +301,41 @@ main{
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: bold;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+    text-transform: capitalize;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background-color: var(--category-default);
+}
+
+.fact-category[data-category="Nauka"],
+.fact-category[data-category="nauka"] {
+    background-color: var(--category-science);
+}
+
+.fact-category[data-category="Geografia"],
+.fact-category[data-category="geografia"] {
+    background-color: var(--category-geography);
+}
+
+.fact-category[data-category="Sport"],
+.fact-category[data-category="sport"] {
+    background-color: var(--category-sport);
+}
+
+.fact-category[data-category="Technologia"],
+.fact-category[data-category="technologia"] {
+    background-color: var(--category-technology);
+}
+
+.fact-category[data-category="Historia"],
+.fact-category[data-category="historia"] {
+    background-color: var(--category-history);
 }
 
 .fact-date{

@@ -72,7 +72,7 @@ function createFactCard(fact){
     return `
         <article class="fact-card">
             <div class="fact-header">
-                <span class="fact-category">${fact.category}</span>
+                <span class="fact-category" data-category="${fact.category}">${fact.category}</span>
                 <span class="fact-date">${fact.date}</span>
             </div>
             <h3 class="fact-title">${fact.title}</h3>

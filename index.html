@@ -54,6 +54,88 @@
                 </div>
             </section>
 
+            <section class="add-fact-section">
+                <button id="toggle-form-btn" class="toggle-form-btn">
+                    Dodaj swoją ciekawostkę
+                </button>
+                
+                <div id="add-fact-form-container" class="form-container" style="display: none;">
+                    <h2>Dodaj nową ciekawostkę</h2>
+                
+                    <form id="add-fact-form" class="add-fact-form">
+                        
+                        <div class="form-group">
+                            <label for="fact-title-input">
+                                Tytuł <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="fact-title-input" 
+                                name="title"
+                                placeholder="Np. Kangury nie potrafią chodzić tyłem"
+                                minlength="5"
+                                maxlength="100"
+                                required>
+                            <span class="char-count">0/100</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fact-category-input">
+                                Kategoria <span class="required">*</span>
+                            </label>
+                            <select id="fact-category-input" name="category" required>
+                                <option value="">Wybierz kategorię</option>
+                                <option value="Nauka">Nauka</option>
+                                <option value="Geografia">Geografia</option>
+                                <option value="Sport">Sport</option>
+                                <option value="Technologia">Technologia</option>
+                                <option value="Historia">Historia</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fact-description-input">
+                                Opis <span class="required">*</span>
+                            </label>
+                            <textarea 
+                                id="fact-description-input" 
+                                name="description"
+                                placeholder="Opisz ciekawostkę... (min. 20 znaków)"
+                                required
+                                minlength="20"
+                                maxlength="500"
+                                rows="5"
+                            ></textarea>
+                            <span class="char-count">0/500</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fact-source-input">
+                                Źródło <span class="optional">(opcjonalne)</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="fact-source-input" 
+                                name="source"
+                                placeholder="Np. National Geographic"
+                                maxlength="100"
+                            >
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn-submit">
+                                Dodaj ciekawostkę
+                            </button>
+                            <button type="button" id="cancel-form-btn" class="btn-cancel">
+                                Anuluj
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div id="form-message" class="form-message" style="display: none;"></div>
+                </div>
+            </section>
+
             <section class="facts-container">
                 <h2>Ostatnie ciekawostki</h2>
 

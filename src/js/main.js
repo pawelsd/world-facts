@@ -6,6 +6,17 @@ const clearSearchBtn = document.getElementById('clear-search');
 const searchResultsInfo = document.querySelector('.search-results-info');
 const themeToggle = document.getElementById('theme-toggle');
 
+const toggleFormBtn = document.getElementById('toggle-form-btn');
+const formContainer = document.getElementById('add-fact-form-container');
+const addFactForm = document.getElementById('add-fact-form');
+const cancelFormBtn = document.getElementById('cancel-form-btn');
+const formMessage = document.getElementById('form-message');
+
+const titleInput = document.getElementById('fact-title-input');
+const categoryInput = document.getElementById('fact-category-input');
+const descriptionInput = document.getElementById('fact-description-input');
+const sourceInput = document.getElementById('fact-source-input');
+
 function getSavedTheme(){
     const savedThheme = localStorage.getItem('theme');
     if(savedThheme){
@@ -216,6 +227,72 @@ function clearSearch(){
     console.log('Search cleared.');
 }
 
+function toggleForm(){
+    const isVisible = formContainer.style.display !== 'none';
+    
+    if(isVisible){
+        formContainer.style.display = 'none';
+        toggleFormBtn.textContent = 'Dodaj swoją ciekawostkę';
+    } 
+    else{
+        formContainer.style.display = 'block';
+        toggleFormBtn.textContent = 'Zwiń formularz';
+        titleInput.focus();
+    }
+    
+    console.log(`Form ${isVisible ? 'hidden' : 'shown'}`);
+}
+
+function updateCharCount(input){
+    const maxLength = input.getAttribute('maxlength');
+    const currentLength = input.value.length;
+    const counter = input.parentElement.querySelector('.char-count');
+    
+    if (counter && maxLength){
+        counter.textContent = `${currentLength}/${maxLength}`;
+        
+        if (currentLength > maxLength * 0.9){
+            counter.style.color = '#ef4444';
+        } 
+        else if (currentLength > maxLength * 0.7){
+            counter.style.color = '#f59e0b';
+        } 
+        else{
+            counter.style.color = '#9ca3af';
+        }
+    }
+}
+
+function getUserFacts(){
+    const stored = localStorage.getItem('userFacts');
+    return stored ? JSON.parse(stored) : [];
+}
+
+function saveUserFacts(facts){
+    localStorage.setItem('userFacts', JSON.stringify(facts));
+    console.log('Saved to localStorage:', facts.length, 'user facts');
+}
+
+function generateFactId(){
+    const allUserFacts = getUserFacts();
+    const maxId = Math.max(
+        ...allFacts.map(f => f.id),
+        ...allUserFacts.map(f => f.id),
+        0
+    );
+    return maxId + 1;
+}
+
+function showFormMessage(message, type = 'success'){
+    formMessage.textContent = message;
+    formMessage.className = `form-message ${type}`;
+    formMessage.style.display = 'block';
+    
+    setTimeout(() => {
+        formMessage.style.display = 'none';
+    }, 5000);
+}
+
 async function init(){
     console.log('Initializing facts...');
 
@@ -245,6 +322,24 @@ async function init(){
         if(themeToggle){
             themeToggle.addEventListener('click', toggleTheme);
             console.log('Theme toggle button initialized.');
+        }
+
+        if(toggleFormBtn){
+            toggleFormBtn.addEventListener('click', toggleForm);
+            console.log('Toggle form button initialized.');
+        }
+        
+        if(cancelFormBtn){
+            cancelFormBtn.addEventListener('click', toggleForm);
+            console.log('Cancel form button initialized.');
+        }
+        
+        if(titleInput){
+            titleInput.addEventListener('input', () => updateCharCount(titleInput));
+        }
+        
+        if(descriptionInput){
+            descriptionInput.addEventListener('input', () => updateCharCount(descriptionInput));
         }
     }
     else{

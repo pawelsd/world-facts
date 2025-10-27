@@ -293,6 +293,93 @@ function showFormMessage(message, type = 'success'){
     }, 5000);
 }
 
+/**
+ * Validate form data
+ * @param {Object} formData - Form data object
+ * @returns {Object} { isValid: boolean, errors: Array }
+ */
+function validateFormData(formData) {
+    const errors = [];
+    
+    // Title validation
+    if (!formData.title || formData.title.trim().length < 5) {
+        errors.push('Tytuł musi mieć minimum 5 znaków');
+    }
+    if (formData.title.length > 100) {
+        errors.push('Tytuł nie może przekroczyć 100 znaków');
+    }
+    
+    // Category validation
+    if (!formData.category) {
+        errors.push('Wybierz kategorię');
+    }
+    
+    // Description validation
+    if (!formData.description || formData.description.trim().length < 20) {
+        errors.push('Opis musi mieć minimum 20 znaków');
+    }
+    if (formData.description.length > 500) {
+        errors.push('Opis nie może przekroczyć 500 znaków');
+    }
+    
+    return {
+        isValid: errors.length === 0,
+        errors: errors
+    };
+}
+
+async function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    console.log('Form submitted');
+    
+    const formData = {
+        id: generateFactId(),
+        title: titleInput.value.trim(),
+        category: categoryInput.value,
+        description: descriptionInput.value.trim(),
+        source: sourceInput.value.trim() || 'Użytkownik',
+        date: new Date().toISOString().split('T')[0],
+        userAdded: true
+    };
+    
+    console.log('Form data:', formData);
+    
+    const validation = validateFormData(formData);
+    
+    if (!validation.isValid) {
+        showFormMessage(validation.errors.join(', '), 'error');
+        console.error('Validation failed:', validation.errors);
+        return;
+    }
+    
+    const userFacts = getUserFacts();
+    userFacts.push(formData);
+    saveUserFacts(userFacts);
+    
+    allFacts.unshift(formData);
+    
+    const filteredFacts = getFilteredFacts();
+    renderFacts(filteredFacts);
+    updateSearchInfo(filteredFacts.length);
+    
+    showFormMessage('Ciekawostka dodana pomyślnie!', 'success');
+    
+    addFactForm.reset();
+    updateCharCount(titleInput);
+    updateCharCount(descriptionInput);
+    
+    setTimeout(() => {
+        toggleForm();
+    }, 2000);
+    
+    console.log('Fact added successfully! Total facts:', allFacts.length);
+}
+
+function handleInputChange(event) {
+    updateCharCount(event.target);
+}
+
 async function init(){
     console.log('Initializing facts...');
 

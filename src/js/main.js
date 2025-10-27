@@ -293,28 +293,19 @@ function showFormMessage(message, type = 'success'){
     }, 5000);
 }
 
-/**
- * Validate form data
- * @param {Object} formData - Form data object
- * @returns {Object} { isValid: boolean, errors: Array }
- */
 function validateFormData(formData) {
     const errors = [];
-    
-    // Title validation
+
     if (!formData.title || formData.title.trim().length < 5) {
         errors.push('Tytuł musi mieć minimum 5 znaków');
     }
     if (formData.title.length > 100) {
         errors.push('Tytuł nie może przekroczyć 100 znaków');
     }
-    
-    // Category validation
     if (!formData.category) {
         errors.push('Wybierz kategorię');
     }
     
-    // Description validation
     if (!formData.description || formData.description.trim().length < 20) {
         errors.push('Opis musi mieć minimum 20 znaków');
     }
@@ -387,6 +378,12 @@ async function init(){
 
     allFacts = await fetchFacts();
 
+    const userFacts = getUserFacts();
+    if (userFacts.length > 0) {
+        allFacts = [...userFacts, ...allFacts];
+        console.log(`Loaded ${userFacts.length} user facts from localStorage`);
+    }
+
     if(allFacts.length > 0){
         renderFacts(allFacts);
 
@@ -420,13 +417,20 @@ async function init(){
             cancelFormBtn.addEventListener('click', toggleForm);
             console.log('Cancel form button initialized.');
         }
-        
+
+        if(addFactForm){
+            addFactForm.addEventListener('submit', handleFormSubmit);
+            console.log('Add fact form submit initialized.');
+        }
+
         if(titleInput){
-            titleInput.addEventListener('input', () => updateCharCount(titleInput));
+            titleInput.addEventListener('input', handleInputChange);
+            updateCharCount(titleInput);
         }
         
         if(descriptionInput){
-            descriptionInput.addEventListener('input', () => updateCharCount(descriptionInput));
+            descriptionInput.addEventListener('input', handleInputChange);
+            updateCharCount(descriptionInput);
         }
     }
     else{

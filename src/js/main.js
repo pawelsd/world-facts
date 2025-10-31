@@ -80,8 +80,12 @@ async function fetchFacts() {
 }
 
 function createFactCard(fact){
+    const userBadge = fact.userAdded 
+        ? '<span class="user-badge">Dodane przez Ciebie</span>' 
+        : '';
+
     return `
-        <article class="fact-card">
+        <article class="fact-card ${fact.userAdded ? 'user-fact' : ''}">
             <div class="fact-header">
                 <span class="fact-category" data-category="${fact.category}">${fact.category}</span>
                 <span class="fact-date">${fact.date}</span>

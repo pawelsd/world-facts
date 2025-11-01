@@ -479,7 +479,63 @@ main{
     box-shadow: 0 5px 20px rgba(0,0,0,0.3);
 }
 
-/* === USER FACT BADGE === */
+.btn-delete {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    background-color: rgba(239, 68, 68, 0.9);
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+    z-index: 10;
+    opacity: 0;
+}
+
+.fact-card.user-fact {
+    position: relative;
+}
+
+.fact-card.user-fact:hover .btn-delete {
+    opacity: 1;
+}
+
+.btn-delete:hover {
+    background-color: rgba(239, 68, 68, 1);
+    transform: scale(1.1) rotate(10deg);
+}
+
+.btn-delete:active {
+    transform: scale(0.95) rotate(10deg);
+}
+
+.delete-icon {
+    display: block;
+    pointer-events: none;
+}
+
+@keyframes fadeOutScale {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+.fact-card.removing {
+    animation: fadeOutScale 0.3s ease-out forwards;
+}
+
 .user-badge {
     display: inline-block;
     background: linear-gradient(135deg, #f59e0b, #f97316);

@@ -84,12 +84,20 @@ function createFactCard(fact){
         ? '<span class="user-badge">Dodane przez Ciebie</span>' 
         : '';
 
+    const deleteButton = fact.userAdded
+        ? `<button class="btn-delete" data-id="${fact.id}" title="Usuń ciekawostkę">
+              <span class="delete-icon">🗑️</span>
+           </button>`
+        : '';
+
     return `
-        <article class="fact-card ${fact.userAdded ? 'user-fact' : ''}">
+        <article class="fact-card ${fact.userAdded ? 'user-fact' : ''}" data-fact-id="${fact.id}">
+            ${deleteButton}
             <div class="fact-header">
                 <span class="fact-category" data-category="${fact.category}">${fact.category}</span>
                 <span class="fact-date">${fact.date}</span>
             </div>
+            ${userBadge}
             <h3 class="fact-title">${fact.title}</h3>
             <p class="fact-description">${fact.description}</p>
             <div class="fact-footer">
@@ -375,6 +383,60 @@ function handleInputChange(event) {
     updateCharCount(event.target);
 }
 
+function deleteUserFact(factId) {
+    const fact = allFacts.find(f => f.id === factId);
+    
+    if (!fact || !fact.userAdded) {
+        console.error('Cannot delete: Not a user fact or not found');
+        return;
+    }
+    
+    const confirmed = confirm(
+        `Czy na pewno chcesz usunąć ciekawostkę:\n\n"${fact.title}"?\n\nTej operacji nie można cofnąć.`
+    );
+    
+    if (!confirmed) {
+        console.log('Delete cancelled by user');
+        return;
+    }
+    
+    console.log(`Deleting fact ID: ${factId}`);
+    
+    const card = document.querySelector(`[data-fact-id="${factId}"]`);
+    
+    if (card) {
+        card.classList.add('removing');
+        
+        setTimeout(() => {
+            allFacts = allFacts.filter(f => f.id !== factId);
+            
+            let userFacts = getUserFacts();
+            userFacts = userFacts.filter(f => f.id !== factId);
+            saveUserFacts(userFacts);
+
+            const filteredFacts = getFilteredFacts();
+            renderFacts(filteredFacts);
+            updateSearchInfo(filteredFacts.length);
+            
+            console.log(`Fact deleted. Remaining: ${allFacts.length}`);
+        }, 300);
+    }
+}
+
+function handleDeleteClick(event) {
+    if (event.target.classList.contains('btn-delete') || 
+        event.target.closest('.btn-delete')) {
+        
+        const deleteBtn = event.target.classList.contains('btn-delete') 
+            ? event.target 
+            : event.target.closest('.btn-delete');
+        
+        const factId = parseInt(deleteBtn.dataset.id);
+        
+        deleteUserFact(factId);
+    }
+}
+
 async function init(){
     console.log('Initializing facts...');
 
@@ -436,6 +498,9 @@ async function init(){
             descriptionInput.addEventListener('input', handleInputChange);
             updateCharCount(descriptionInput);
         }
+
+        factsContainer.addEventListener('click', handleDeleteClick);
+        console.log('Delete buttons initialized.');
     }
     else{
         factsContainer.innerHTML += '<p style="color: red;">Nie udało się załadować ciekawostek.</p>';

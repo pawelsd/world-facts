@@ -135,6 +135,7 @@ function renderFacts(facts){
 let allFacts = [];
 let currentFilter = 'all';
 let searchQuery = '';
+let currentSort = 'date-desc';
 
 function filterFacts(category){
     if(category === 'all'){
@@ -193,9 +194,9 @@ function searchFacts(facts, query){
 
 function getFilteredFacts(){
     let facts = filterFacts(currentFilter);
-
     facts = searchFacts(facts, searchQuery);
-
+    facts = sortFacts(facts, currentSort);
+    
     return facts;
 }
 
@@ -305,7 +306,7 @@ function showFormMessage(message, type = 'success'){
     }, 5000);
 }
 
-function validateFormData(formData) {
+function validateFormData(formData){
     const errors = [];
 
     if (!formData.title || formData.title.trim().length < 5) {
@@ -331,7 +332,7 @@ function validateFormData(formData) {
     };
 }
 
-async function handleFormSubmit(event) {
+async function handleFormSubmit(event){
     event.preventDefault();
     
     console.log('Form submitted');
@@ -350,7 +351,7 @@ async function handleFormSubmit(event) {
     
     const validation = validateFormData(formData);
     
-    if (!validation.isValid) {
+    if (!validation.isValid){
         showFormMessage(validation.errors.join(', '), 'error');
         console.error('Validation failed:', validation.errors);
         return;
@@ -379,11 +380,11 @@ async function handleFormSubmit(event) {
     console.log('Fact added successfully! Total facts:', allFacts.length);
 }
 
-function handleInputChange(event) {
+function handleInputChange(event){
     updateCharCount(event.target);
 }
 
-function deleteUserFact(factId) {
+function deleteUserFact(factId){
     const fact = allFacts.find(f => f.id === factId);
     
     if (!fact || !fact.userAdded) {
@@ -423,7 +424,7 @@ function deleteUserFact(factId) {
     }
 }
 
-function handleDeleteClick(event) {
+function handleDeleteClick(event){
     if (event.target.classList.contains('btn-delete') || 
         event.target.closest('.btn-delete')) {
         
@@ -434,6 +435,45 @@ function handleDeleteClick(event) {
         const factId = parseInt(deleteBtn.dataset.id);
         
         deleteUserFact(factId);
+    }
+}
+
+function handleSortChange(event){
+    currentSort = event.target.value;
+    
+    console.log(`Sorting by: ${currentSort}`);
+    
+    const filteredFacts = getFilteredFacts();
+    renderFacts(filteredFacts);
+    updateSearchInfo(filteredFacts.length);
+}
+
+function sortFacts(facts, sortBy){
+    const sortedFacts = [...facts];
+    
+    switch(sortBy){
+        case 'date-desc': //Najnowsze
+            return sortedFacts.sort((a, b) => {
+                return new Date(b.date) - new Date(a.date);
+            });
+        
+        case 'date-asc': //Najstarsze
+            return sortedFacts.sort((a, b) => {
+                return new Date(a.date) - new Date(b.date);
+            });
+        
+        case 'title-asc': //A-Z
+            return sortedFacts.sort((a, b) => {
+                return a.title.localeCompare(b.title, 'pl');
+            });
+        
+        case 'title-desc': //Z-A
+            return sortedFacts.sort((a, b) => {
+                return b.title.localeCompare(a.title, 'pl');
+            });
+        
+        default:
+            return sortedFacts;
     }
 }
 
@@ -472,6 +512,12 @@ async function init(){
         if(themeToggle){
             themeToggle.addEventListener('click', toggleTheme);
             console.log('Theme toggle button initialized.');
+        }
+
+        const sortSelect = document.getElementById('sort-select');
+        if(sortSelect){
+            sortSelect.addEventListener('change', handleSortChange);
+            console.log('Sort select initialized.');
         }
 
         if(toggleFormBtn){

@@ -278,5 +278,17 @@ async function init() {
     }
 }
 
+const backToTopBtn = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        backToTopBtn.style.display = 'flex';
+    } else {
+        backToTopBtn.style.display = 'none';
+    }
+});
+backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
 // Uruchomienie aplikacji po załadowaniu DOM
 document.addEventListener('DOMContentLoaded', init);

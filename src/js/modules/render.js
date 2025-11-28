@@ -1,3 +1,8 @@
+/* Aktualizuje licznik ciekawostek */
+export function updateFactsCounter(counterElement, label) {
+    if (!counterElement) return;
+    counterElement.textContent = label;
+}
 /* Moduł renderowania elementów DOM */
 /* Odpowiada za tworzenie i wyświetlanie elementów HTML */
 

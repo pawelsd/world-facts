@@ -12,8 +12,8 @@ import {
 } from './modules/facts.js';
 import { 
     renderFacts, 
-    updateSearchInfo, 
-    animateCardRemoval 
+    animateCardRemoval, 
+    updateFactsCounter
 } from './modules/render.js';
 import { initForm } from './modules/form.js';
 import { deleteUserFactFromStorage } from './modules/storage.js';
@@ -31,10 +31,11 @@ const elements = {
     factsContainer: document.querySelector('.facts-container'),
     searchInput: document.getElementById('search-input'),
     clearSearchBtn: document.getElementById('clear-search'),
-    searchResultsInfo: document.querySelector('.search-results-info'),
+    // searchResultsInfo: document.querySelector('.search-results-info'),
     themeToggle: document.getElementById('theme-toggle'),
     filterButtons: document.querySelector('.filter-buttons'),
-    sortSelect: document.getElementById('sort-select')
+    sortSelect: document.getElementById('sort-select'),
+    factsCounter: document.getElementById('facts-counter')
 };
 
 // Elementy formularza
@@ -64,12 +65,14 @@ function getFilteredFacts(){
 function updateUI(){
     const filteredFacts = getFilteredFacts();
     renderFacts(elements.factsContainer, filteredFacts);
-    updateSearchInfo(
-        elements.searchResultsInfo, 
-        filteredFacts.length, 
-        appState.searchQuery, 
-        appState.currentFilter
-    );
+    // Licznik pokazuje liczbę wyświetlanych ciekawostek (po filtrach/wyszukiwaniu)
+    let label = '';
+    if(appState.searchQuery.trim() !== '' || appState.currentFilter !== 'all') {
+        label = `Znaleziono ${filteredFacts.length} ciekawostek.`;
+    } else {
+        label = `Liczba ciekawostek: ${filteredFacts.length}`;
+    }
+    updateFactsCounter(elements.factsCounter, label);
 }
 
 /* Aktualizowanie aktywnego przycisku filtra */

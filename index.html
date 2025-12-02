@@ -150,7 +150,12 @@
                 </div>
             </section>
 
-            <div id="facts-counter" class="facts-counter" style="margin-bottom: 1.2rem; font-size: 1.1rem; color: var(--color-text-light);"></div>
+            <div class="facts-header">
+                <div id="facts-counter" class="facts-counter" style="font-size: 1.1rem; color: var(--color-text-light);"></div>
+                <button id="random-fact-btn" class="random-fact-btn">
+                    <i class="fa-solid fa-shuffle"></i> Losowa ciekawostka
+                </button>
+            </div>
             <section class="facts-container">
                 <h2>Ostatnie ciekawostki</h2>
             </section>
@@ -159,6 +164,33 @@
         <a id="back-to-top" class="back-to-top" style="display: none;" aria-label="Powrót do góry">
             <i class="fa-solid fa-arrow-up"></i>
         </a>
+
+        <div id="random-fact-modal" class="modal" style="display: none;">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Zamknij">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="modal-header">
+                    <h2>Losowa ciekawostka</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-fact-category"></div>
+                    <h3 class="modal-fact-title"></h3>
+                    <p class="modal-fact-description"></p>
+                    <p class="modal-fact-source"></p>
+                    <p class="modal-fact-date"></p>
+                </div>
+                <div class="modal-footer">
+                    <button id="modal-random-again" class="btn-modal-random">
+                        Losuj ponownie
+                    </button>
+                    <button id="modal-close-btn" class="btn-modal-close">
+                        Zamknij
+                    </button>
+                </div>
+            </div>
+        </div>
 
         <footer>
             <p>&copy; 2025</p>

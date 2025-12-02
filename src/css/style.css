@@ -227,47 +227,47 @@ main{
 }
 
 .filter-btn[data-category="Nauka"]:hover,
-.filter-btn[data-category="Nauka"].active {
+.filter-btn[data-category="Nauka"].active{
     background-color: var(--category-science);
     color: white;
     border-color: var(--category-science);
 }
 
 .filter-btn[data-category="Geografia"]:hover,
-.filter-btn[data-category="Geografia"].active {
+.filter-btn[data-category="Geografia"].active{
     background-color: var(--category-geography);
     color: white;
     border-color: var(--category-geography);
 }
 
 .filter-btn[data-category="Sport"]:hover,
-.filter-btn[data-category="Sport"].active {
+.filter-btn[data-category="Sport"].active{
     background-color: var(--category-sport);
     color: white;
     border-color: var(--category-sport);
 }
 
 .filter-btn[data-category="Technologia"]:hover,
-.filter-btn[data-category="Technologia"].active {
+.filter-btn[data-category="Technologia"].active{
     background-color: var(--category-technology);
     color: white;
     border-color: var(--category-technology);
 }
 
 .filter-btn[data-category="all"]:hover,
-.filter-btn[data-category="all"].active {
+.filter-btn[data-category="all"].active{
     background-color: var(--color-bg-light);
     color: var(--color-text-dark);
     border-color: var(--color-bg-light);
 }
 
-.add-fact-section {
+.add-fact-section{
     margin-bottom: 2rem;
 }
 
-.toggle-form-btn {
+.toggle-form-btn{
     width: 100%;
-    background: linear-gradient(135deg, var(--category-science), var(--category-technology));
+    background-color: #043e9c;
     color: white;
     border: none;
     padding: 1rem 1.5rem;
@@ -279,16 +279,16 @@ main{
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
-.toggle-form-btn:hover {
+.toggle-form-btn:hover{
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-.toggle-form-btn:active {
+.toggle-form-btn:active{
     transform: translateY(0);
 }
 
-.form-container {
+.form-container{
     background-color: var(--color-bg-facts-container);
     padding: 2rem;
     border-radius: 10px;
@@ -297,47 +297,47 @@ main{
     animation: slideDown 0.3s ease-out;
 }
 
-@keyframes slideDown {
-    from {
+@keyframes slideDown{
+    from{
         opacity: 0;
         transform: translateY(-10px);
     }
-    to {
+    to{
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-.form-container h2 {
+.form-container h2{
     color: var(--color-text-light);
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
 }
 
-.add-fact-form {
+.add-fact-form{
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
-.form-group {
+.form-group{
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     position: relative;
 }
 
-.form-group label {
+.form-group label{
     color: var(--color-text-light);
     font-weight: 600;
     font-size: 0.95rem;
 }
 
-.required {
+.required{
     color: #ef4444;
 }
 
-.optional {
+.optional{
     color: #9ca3af;
     font-weight: 400;
     font-size: 0.85rem;
@@ -345,7 +345,7 @@ main{
 
 .form-group input,
 .form-group select,
-.form-group textarea {
+.form-group textarea{
     padding: 0.8rem;
     border: 2px solid var(--color-bg-card);
     border-radius: 8px;
@@ -358,17 +358,17 @@ main{
 
 .form-group input:focus,
 .form-group select:focus,
-.form-group textarea:focus {
+.form-group textarea:focus{
     outline: none;
     border-color: var(--category-science);
 }
 
-.form-group textarea {
+.form-group textarea{
     resize: vertical;
     min-height: 100px;
 }
 
-.char-count {
+.char-count{
     position: absolute;
     bottom: 0.5rem;
     right: 0.8rem;
@@ -377,14 +377,14 @@ main{
     pointer-events: none;
 }
 
-.form-actions {
+.form-actions{
     display: flex;
     gap: 1rem;
     margin-top: 0.5rem;
 }
 
 .btn-submit,
-.btn-cancel {
+.btn-cancel{
     flex: 1;
     padding: 0.8rem 1.5rem;
     border: none;
@@ -395,27 +395,27 @@ main{
     transition: transform 0.2s, opacity 0.2s;
 }
 
-.btn-submit {
+.btn-submit{
     background-color: var(--category-science);
     color: white;
 }
 
-.btn-submit:hover {
+.btn-submit:hover{
     opacity: 0.9;
     transform: translateY(-2px);
 }
 
-.btn-cancel {
+.btn-cancel{
     background-color: var(--color-bg-card);
     color: var(--color-text-light);
     border: 2px solid var(--color-bg-card);
 }
 
-.btn-cancel:hover {
+.btn-cancel:hover{
     opacity: 0.8;
 }
 
-.form-message {
+.form-message{
     padding: 1rem;
     border-radius: 8px;
     margin-top: 1rem;
@@ -424,29 +424,33 @@ main{
     animation: fadeIn 0.3s ease-out;
 }
 
-.form-message.success {
+.form-message.success{
     background-color: rgba(16, 185, 129, 0.2);
     color: var(--category-geography);
     border: 2px solid var(--category-geography);
 }
 
-.form-message.error {
+.form-message.error{
     background-color: rgba(239, 68, 68, 0.2);
     color: #ef4444;
     border: 2px solid #ef4444;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+@keyframes fadeIn{
+    from{
+        opacity: 0; 
+    }
+    to{ 
+        opacity: 1; 
+    }
 }
 
-@media screen and (max-width: 480px) {
-    .form-actions {
+@media screen and (max-width: 480px){
+    .form-actions{
         flex-direction: column;
     }
     
-    .form-container {
+    .form-container{
         padding: 1.5rem;
     }
 }
@@ -804,6 +808,61 @@ main{
     background: #444;
 }
 
+.facts-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.random-fact-btn{
+    background-color: #043e9c;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.3rem;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    white-space: nowrap;
+}
+
+.random-fact-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.random-fact-btn:active{
+    transform: translateY(0);
+}
+
+.random-fact-btn i{
+    font-size: 1rem;
+}
+
+.fact-card.highlight{
+    animation: highlightPulse 2s ease-out;
+    border-color: var(--category-science);
+}
+
+@keyframes highlightPulse{
+    0%, 100% {
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        transform: translateY(-3px);
+    }
+    50% {
+        box-shadow: 0 8px 30px rgba(59, 130, 246, 0.6);
+        transform: translateY(-5px) scale(1.02);
+    }
+}
+
 @media screen and (max-width: 480px){
     .sort-container{
         flex-direction: column;
@@ -935,4 +994,239 @@ button:focus-visible,
 input:focus-visible{
     outline: 3px solid var(--color-bg-light);
     outline-offset: 2px;
+}
+
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.modal-content{
+    position: relative;
+    background: var(--color-bg-facts-container);
+    border-radius: 15px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease-out;
+    z-index: 2001;
+}
+
+@keyframes slideUp{
+    from{
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-close{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    color: var(--color-text-light);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: background 0.2s, transform 0.2s;
+    z-index: 10;
+}
+
+.modal-close:hover{
+    background: rgba(239, 68, 68, 0.8);
+    transform: rotate(90deg);
+}
+
+.modal-header{
+    padding: 2rem 2rem 1rem;
+    border-bottom: 2px solid var(--color-bg-card);
+}
+
+.modal-header h2{
+    color: var(--color-text-light);
+    font-size: 1.8rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.modal-header i{
+    color: var(--category-science);
+}
+
+.modal-body{
+    padding: 2rem;
+}
+
+.modal-fact-category{
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 1rem;
+    background-color: var(--category-default);
+}
+
+.modal-fact-category[data-category="Nauka"],
+.modal-fact-category[data-category="nauka"]{
+    background-color: var(--category-science);
+}
+
+.modal-fact-category[data-category="Geografia"],
+.modal-fact-category[data-category="geografia"]{
+    background-color: var(--category-geography);
+}
+
+.modal-fact-category[data-category="Sport"],
+.modal-fact-category[data-category="sport"]{
+    background-color: var(--category-sport);
+}
+
+.modal-fact-category[data-category="Technologia"],
+.modal-fact-category[data-category="technologia"]{
+    background-color: var(--category-technology);
+}
+
+.modal-fact-category[data-category="Historia"],
+.modal-fact-category[data-category="historia"]{
+    background-color: var(--category-history);
+}
+
+.modal-fact-title{
+    color: var(--color-text-light);
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.modal-fact-description{
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.modal-fact-source{
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    font-style: italic;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+}
+
+.modal-fact-date{
+    color: var(--color-text-light);
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.modal-footer{
+    padding: 1.5rem 2rem 2rem;
+    display: flex;
+    gap: 1rem;
+    border-top: 2px solid var(--color-bg-card);
+}
+
+.btn-modal-random{
+    flex: 1;
+    background-color: #084bb6;
+    color: white;
+    border: none;
+    padding: 0.9rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.btn-modal-random:hover{
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.btn-modal-close{
+    background: var(--color-bg-card);
+    color: var(--color-text-light);
+    border: 2px solid var(--color-bg-card);
+    padding: 0.9rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-modal-close:hover{
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 480px){
+    .modal-content{
+        width: 95%;
+        max-height: 90vh;
+    }
+    
+    .modal-header{
+        padding: 1.5rem 1.5rem 1rem;
+    }
+    
+    .modal-header h2{
+        font-size: 1.4rem;
+    }
+    
+    .modal-body{
+        padding: 1.5rem;
+    }
+ 
+    .modal-fact-title{
+        font-size: 1.3rem;
+    }
+    
+    .modal-fact-description{
+        font-size: 1rem;
+    }
+    
+    .modal-footer{
+        flex-direction: column;
+        padding: 1rem 1.5rem 1.5rem;
+    }
 }

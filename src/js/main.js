@@ -35,7 +35,8 @@ const elements = {
     themeToggle: document.getElementById('theme-toggle'),
     filterButtons: document.querySelector('.filter-buttons'),
     sortSelect: document.getElementById('sort-select'),
-    factsCounter: document.getElementById('facts-counter')
+    factsCounter: document.getElementById('facts-counter'),
+    randomFactBtn: document.getElementById('random-fact-btn')
 };
 
 // Elementy formularza
@@ -148,6 +149,47 @@ function handleSortChange(event){
     updateUI();
 }
 
+/* Pokazanie losowej ciekawostki w modalu */
+function showRandomFact(){
+    const filteredFacts = getFilteredFacts();
+    
+    if(filteredFacts.length === 0){
+        alert('Brak ciekawostek do wyświetlenia.');
+        return;
+    }
+    
+    const randomIndex = Math.floor(Math.random() * filteredFacts.length);
+    const randomFact = filteredFacts[randomIndex];
+    
+    // Wypełnienie modala danymi
+    const modal = document.getElementById('random-fact-modal');
+    const categoryEl = modal.querySelector('.modal-fact-category');
+    const titleEl = modal.querySelector('.modal-fact-title');
+    const descriptionEl = modal.querySelector('.modal-fact-description');
+    const sourceEl = modal.querySelector('.modal-fact-source');
+    const dateEl = modal.querySelector('.modal-fact-date');
+    
+    categoryEl.textContent = randomFact.category;
+    categoryEl.setAttribute('data-category', randomFact.category);
+    titleEl.textContent = randomFact.title;
+    descriptionEl.textContent = randomFact.description;
+    sourceEl.textContent = randomFact.source ? `Źródło: ${randomFact.source}` : '';
+    dateEl.textContent = randomFact.date || '';
+    
+    // Otwarcie modala
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    console.log(`Random fact shown: ${randomFact.title}`);
+}
+
+/* Zamknięcie modala losowej ciekawostki */
+function closeRandomFactModal(){
+    const modal = document.getElementById('random-fact-modal');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+}
+
 /* Usuwanie ciekawostki użytkownika */
 /* @param {number} factId - ID ciekawostki do usunięcia */
 function deleteUserFact(factId){
@@ -245,6 +287,44 @@ function initEventListeners(){
         elements.factsContainer.addEventListener('click', handleDeleteClick);
         console.log('Delete buttons initialized.');
     }
+
+    // Losowa ciekawostka
+    if(elements.randomFactBtn){
+        elements.randomFactBtn.addEventListener('click', showRandomFact);
+        console.log('Random fact button initialized.');
+    }
+
+    // Modal losowej ciekawostki
+    const modal = document.getElementById('random-fact-modal');
+    const modalClose = modal?.querySelector('.modal-close');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const modalOverlay = modal?.querySelector('.modal-overlay');
+    const modalRandomAgain = document.getElementById('modal-random-again');
+    
+    if(modalClose){
+        modalClose.addEventListener('click', closeRandomFactModal);
+    }
+    
+    if(modalCloseBtn){
+        modalCloseBtn.addEventListener('click', closeRandomFactModal);
+    }
+    
+    if(modalOverlay){
+        modalOverlay.addEventListener('click', closeRandomFactModal);
+    }
+    
+    if(modalRandomAgain){
+        modalRandomAgain.addEventListener('click', showRandomFact);
+    }
+    
+    // Zamykanie modala klawiszem ESC
+    document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape' && modal?.style.display === 'flex'){
+            closeRandomFactModal();
+        }
+    });
+    
+    console.log('Random fact modal initialized.');
 }
 
 /* Inicjalizowanoe aplikacji */

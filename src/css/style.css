@@ -19,6 +19,34 @@
     --transition-speed: 0.3s;
 }
 
+.sr-only{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.skip-link{
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-bg-header);
+    color: var(--color-text-light);
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 100;
+    border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus{
+    top: 0;
+}
+
 [data-theme="light"]{
     --color-bg-dark: rgb(240, 240, 240);
     --color-bg-light: rgb(255, 255, 255);
@@ -110,6 +138,35 @@ body{
     line-height: 1.6;
     color: var(--color-text-light);
     background-color: var(--color-bg-dark);
+}
+
+/* Lepsze focus indicators dla dostępności klawiatury */
+*:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+    outline: none;
+}
+
+*:focus-visible {
+    outline: 3px solid #3b82f6;
+    outline-offset: 3px;
+}
+
+/* Focus dla przycisków i linków */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+[data-theme="light"] *:focus-visible {
+    outline-color: #2563eb;
 }
 
 header{

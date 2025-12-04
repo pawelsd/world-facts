@@ -23,7 +23,8 @@ const appState = {
     allFacts: [],
     currentFilter: 'all',
     searchQuery: '',
-    currentSort: 'date-desc'
+    currentSort: 'date-desc',
+    lastFocusedElement: null
 };
 
 // Elementy DOM
@@ -80,11 +81,15 @@ function updateUI(){
 /* @param {string} category - Wybrana kategoria */
 function updateActiveFilterButton(category){
     const allButtons = document.querySelectorAll('.filter-btn');
-    allButtons.forEach(btn => btn.classList.remove('active'));
+    allButtons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+    });
 
     const activeButton = document.querySelector(`.filter-btn[data-category="${category}"]`);
     if(activeButton){
         activeButton.classList.add('active');
+        activeButton.setAttribute('aria-pressed', 'true');
     }
 }
 
@@ -124,6 +129,12 @@ function handleSearchInput(event){
     updateUI();
 
     const filteredCount = getFilteredFacts().length;
+    const searchResultsLive = document.getElementById('search-results-live');
+    if(searchResultsLive && appState.searchQuery.trim() !== ''){
+        searchResultsLive.textContent = `Znaleziono ${filteredCount} ciekawostek dla zapytania "${appState.searchQuery}"`;
+    } else if(searchResultsLive){
+        searchResultsLive.textContent = '';
+    }
     console.log(`Search query: "${appState.searchQuery}", found ${filteredCount} facts.`);
 }
 
@@ -176,9 +187,18 @@ function showRandomFact(){
     sourceEl.textContent = randomFact.source ? `Źródło: ${randomFact.source}` : '';
     dateEl.textContent = randomFact.date || '';
     
+    // Zapisanie ostatnio aktywnego elementu przed otwarciem modala
+    appState.lastFocusedElement = document.activeElement;
+    
     // Otwarcie modala
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
+    
+    // Focus trap - ustawienie focusu na przycisku zamknięcia
+    setTimeout(() => {
+        const closeBtn = modal.querySelector('.modal-close');
+        if(closeBtn) closeBtn.focus();
+    }, 100);
     
     console.log(`Random fact shown: ${randomFact.title}`);
 }
@@ -188,6 +208,12 @@ function closeRandomFactModal(){
     const modal = document.getElementById('random-fact-modal');
     modal.style.display = 'none';
     document.body.style.overflow = '';
+    
+    // Przywrócenie focusu do ostatnio aktywnego elementu
+    if(appState.lastFocusedElement){
+        appState.lastFocusedElement.focus();
+        appState.lastFocusedElement = null;
+    }
 }
 
 /* Usuwanie ciekawostki użytkownika */
@@ -257,6 +283,42 @@ function handleFormCallback(action, data){
     }
 }
 
+/* Obsługa focus trap w modalu */
+/* @param {KeyboardEvent} event - Event klawiatury */
+function handleModalFocusTrap(event){
+    const modal = document.getElementById('random-fact-modal');
+    
+    if(modal?.style.display !== 'flex'){
+        return;
+    }
+    
+    if(event.key !== 'Tab'){
+        return;
+    }
+    
+    const focusableElements = modal.querySelectorAll(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    if(event.shiftKey){
+        // Shift + Tab
+        if(document.activeElement === firstElement){
+            event.preventDefault();
+            lastElement.focus();
+        }
+    } 
+    else{
+        // Tab
+        if(document.activeElement === lastElement){
+            event.preventDefault();
+            firstElement.focus();
+        }
+    }
+}
+
 /* Inicjalizowanie wszystkich event listenerow */
 function initEventListeners(){
     // Filtry kategorii
@@ -323,6 +385,11 @@ function initEventListeners(){
             closeRandomFactModal();
         }
     });
+    
+    // Focus trap dla modala
+    if(modal){
+        modal.addEventListener('keydown', handleModalFocusTrap);
+    }
     
     console.log('Random fact modal initialized.');
 }

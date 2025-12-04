@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
+        <meta name="description" content="Odkryj fascynujące ciekawostki ze świata z różnych kategorii: nauka, geografia, sport, technologia i historia. Przeglądaj, wyszukuj i dodawaj własne ciekawostki.">
         <title>Ciekawostki ze świata</title>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -11,7 +11,8 @@
         <link rel="stylesheet" href="src/css/style.css">
     </head>
     <body>
-        <header>
+        <a href="#main-content" class="skip-link">Przejdź do głównej treści</a>
+        <header role="banner">
             <div class="header-content">
                 <div class="header-text">
                     <h1>Ciekawostki ze świata</h1>
@@ -23,18 +24,20 @@
             </div>
         </header>
 
-        <main>
-            <section class="search-section">
+        <main id="main-content">
+            <section class="search-section" role="search" aria-label="Wyszukiwanie ciekawostek">
                 <div class="search-container">
-                    <input type="text" id="search-input" class="search-input" placeholder="Szukaj ciekawostek..." autocomplete="off">
-                    <button id="clear-search" class="clear-btn" style="display: none;">X</button>
+                    <label for="search-input" class="sr-only">Szukaj ciekawostek</label>
+                    <input type="text" id="search-input" class="search-input" placeholder="Szukaj ciekawostek..." autocomplete="off" aria-label="Szukaj ciekawostek" aria-describedby="search-results-live">
+                    <button id="clear-search" class="clear-btn" style="display: none;" aria-label="Wyczyść wyszukiwanie">X</button>
                 </div>
+                <div id="search-results-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
             </section>
 
-            <section class="sort-section">
+            <section class="sort-section" aria-label="Sortowanie ciekawostek">
                 <div class="sort-container">
                     <label for="sort-select" class="sort-label">Sortuj:</label>
-                    <select id="sort-select" class="sort-select">
+                    <select id="sort-select" class="sort-select" aria-label="Wybierz sposób sortowania">
                         <option value="date-desc">Najnowsze</option>
                         <option value="date-asc">Najstarsze</option>
                         <option value="title-asc">A-Z (tytuł)</option>
@@ -43,38 +46,38 @@
                 </div>
             </section>
 
-            <section class="filters">
+            <section class="filters" aria-label="Filtry kategorii">
                 <h2>Kategorie</h2>
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-category="all">
+                <div class="filter-buttons" role="group" aria-label="Filtry kategorii">
+                    <button class="filter-btn active" data-category="all" aria-pressed="true">
                         Wszystkie
                     </button>
 
-                    <button class="filter-btn" data-category="Nauka">
+                    <button class="filter-btn" data-category="Nauka" aria-pressed="false">
                         Nauka
                     </button>
 
-                    <button class="filter-btn" data-category="Geografia">
+                    <button class="filter-btn" data-category="Geografia" aria-pressed="false">
                         Geografia
                     </button>
 
-                    <button class="filter-btn" data-category="Sport">
+                    <button class="filter-btn" data-category="Sport" aria-pressed="false">
                         Sport
                     </button>
 
-                    <button class="filter-btn" data-category="Technologia">
+                    <button class="filter-btn" data-category="Technologia" aria-pressed="false">
                         Technologia
                     </button>
                 </div>
             </section>
 
-            <section class="add-fact-section">
-                <button id="toggle-form-btn" class="toggle-form-btn">
+            <section class="add-fact-section" aria-label="Dodawanie ciekawostek">
+                <button id="toggle-form-btn" class="toggle-form-btn" aria-expanded="false" aria-controls="add-fact-form-container">
                     Dodaj swoją ciekawostkę
                 </button>
                 
-                <div id="add-fact-form-container" class="form-container" style="display: none;">
-                    <h2>Dodaj nową ciekawostkę</h2>
+                <div id="add-fact-form-container" class="form-container" style="display: none;" role="region" aria-labelledby="form-heading">
+                    <h2 id="form-heading">Dodaj nową ciekawostkę</h2>
                 
                     <form id="add-fact-form" class="add-fact-form">
                         
@@ -131,7 +134,7 @@
                                 type="text" 
                                 id="fact-source-input" 
                                 name="source"
-                                placeholder="Np. National Geographic"
+                                placeholder="np. National Geographic"
                                 maxlength="100"
                             >
                         </div>
@@ -146,33 +149,33 @@
                         </div>
                     </form>
                     
-                    <div id="form-message" class="form-message" style="display: none;"></div>
+                    <div id="form-message" class="form-message" style="display: none;" role="status" aria-live="polite"></div>
                 </div>
             </section>
 
             <div class="facts-header">
-                <div id="facts-counter" class="facts-counter" style="font-size: 1.1rem; color: var(--color-text-light);"></div>
-                <button id="random-fact-btn" class="random-fact-btn">
-                    <i class="fa-solid fa-shuffle"></i> Losowa ciekawostka
+                <div id="facts-counter" class="facts-counter" style="font-size: 1.1rem; color: var(--color-text-light);" role="status" aria-live="polite"></div>
+                <button id="random-fact-btn" class="random-fact-btn" aria-label="Pokaż losową ciekawostkę">
+                    <i class="fa-solid fa-shuffle" aria-hidden="true"></i> Losowa ciekawostka
                 </button>
             </div>
-            <section class="facts-container">
+            <section class="facts-container" role="region" aria-label="Lista ciekawostek">
                 <h2>Ostatnie ciekawostki</h2>
             </section>
         </main>
 
-        <a id="back-to-top" class="back-to-top" style="display: none;" aria-label="Powrót do góry">
-            <i class="fa-solid fa-arrow-up"></i>
-        </a>
+        <button id="back-to-top" class="back-to-top" style="display: none;" aria-label="Powrót do góry">
+            <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+        </button>
 
-        <div id="random-fact-modal" class="modal" style="display: none;">
-            <div class="modal-overlay"></div>
+        <div id="random-fact-modal" class="modal" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="modal-overlay" aria-hidden="true"></div>
             <div class="modal-content">
-                <button class="modal-close" aria-label="Zamknij">
-                    <i class="fa-solid fa-xmark"></i>
+                <button class="modal-close" aria-label="Zamknij okno dialogowe">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 </button>
                 <div class="modal-header">
-                    <h2>Losowa ciekawostka</h2>
+                    <h2 id="modal-title">Losowa ciekawostka</h2>
                 </div>
                 <div class="modal-body">
                     <div class="modal-fact-category"></div>
@@ -192,7 +195,7 @@
             </div>
         </div>
 
-        <footer>
+        <footer role="contentinfo">
             <p>&copy; 2025</p>
         </footer>
 

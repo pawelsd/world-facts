@@ -49,10 +49,12 @@ export function toggleForm(){
     if(isVisible){
         formElements.container.style.display = 'none';
         formElements.toggleBtn.textContent = 'Dodaj swoją ciekawostkę';
+        formElements.toggleBtn.setAttribute('aria-expanded', 'false');
     } 
     else{
         formElements.container.style.display = 'block';
         formElements.toggleBtn.textContent = 'Zwiń formularz';
+        formElements.toggleBtn.setAttribute('aria-expanded', 'true');
         formElements.titleInput.focus();
     }
     

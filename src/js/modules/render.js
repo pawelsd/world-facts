@@ -11,27 +11,27 @@ export function updateFactsCounter(counterElement, label) {
 /* @returns {string} HTML string */
 export function createFactCard(fact){
     const userBadge = fact.userAdded 
-        ? '<span class="user-badge">Dodane przez Ciebie</span>' 
+        ? '<span class="user-badge" role="status">Dodane przez Ciebie</span>' 
         : '';
 
     const deleteButton = fact.userAdded
-        ? `<button class="btn-delete" data-id="${fact.id}" title="Usuń ciekawostkę">
-              <span class="delete-icon">🗑️</span>
+        ? `<button class="btn-delete" data-id="${fact.id}" title="Usuń ciekawostkę" aria-label="Usuń ciekawostkę: ${fact.title}">
+              <span class="delete-icon" aria-hidden="true">🗑️</span>
            </button>`
         : '';
 
     return `
-        <article class="fact-card ${fact.userAdded ? 'user-fact' : ''}" data-fact-id="${fact.id}">
+        <article class="fact-card ${fact.userAdded ? 'user-fact' : ''}" data-fact-id="${fact.id}" role="article" aria-labelledby="fact-title-${fact.id}">
             ${deleteButton}
             <div class="fact-header">
                 <span class="fact-category" data-category="${fact.category}">${fact.category}</span>
-                <span class="fact-date">${fact.date}</span>
+                <span class="fact-date"><time datetime="${fact.date}">${fact.date}</time></span>
             </div>
             ${userBadge}
-            <h3 class="fact-title">${fact.title}</h3>
+            <h3 class="fact-title" id="fact-title-${fact.id}">${fact.title}</h3>
             <p class="fact-description">${fact.description}</p>
             <div class="fact-footer">
-                <button class="btn-read-more" data-id="${fact.id}">Czytaj więcej</button>
+                <button class="btn-read-more" data-id="${fact.id}" aria-label="Czytaj więcej o: ${fact.title}">Czytaj więcej</button>
             </div>
             <p class="fact-source">${fact.source}</p>
         </article>
